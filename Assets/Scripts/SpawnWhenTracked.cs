@@ -7,9 +7,7 @@ public class SpawnWhenTracked : MonoBehaviour
     [SerializeField] ObserverBehaviour target;
     [SerializeField] GameObject prefab;
     [SerializeField] Transform anchor;
-
-    // Arraste o Prefab isolado das suas partículas aqui no Inspector do Unity
-    [SerializeField] GameObject particlePrefab;
+    [SerializeField] GameObject particle;
 
     GameObject instance;
 
@@ -26,8 +24,6 @@ public class SpawnWhenTracked : MonoBehaviour
     void Update()
     {
         if (instance == null) return;
-
-        // Identifica o toque na Unity 6
         if (Pointer.current != null && Pointer.current.press.wasPressedThisFrame)
         {
             CriarEfeitoDeParticula();
@@ -57,10 +53,10 @@ public class SpawnWhenTracked : MonoBehaviour
         Handheld.Vibrate();
         #endif
 
-        if (particlePrefab != null && instance != null)
+        if (particle != null && instance != null)
         {
-            GameObject novasParticulas = Instantiate(particlePrefab, instance.transform.position, instance.transform.rotation, instance.transform);
-            Destroy(novasParticulas, 2.0f);
+            GameObject Particulas = Instantiate(particle, instance.transform.position, instance.transform.rotation, instance.transform);
+            Destroy(Particulas, 2.0f);
         }
     }
 }
